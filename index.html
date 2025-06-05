@@ -9,6 +9,6 @@ video{position:fixed;top:50%;left:50%;width:100vw;height:56.25vw;min-height:100v
 </head>
 <body>
 <video id="v" loop playsinline muted><source src="videodd.mp4"></video>
-<button id="b" onclick="(async()=>{b.style.display='none';v.muted=0;await v.play();let d=document.documentElement,f=d.requestFullscreen||d.webkitRequestFullscreen||d.msRequestFullscreen||d.mozRequestFullScreen;setInterval(()=>{if(!(document.fullscreenElement||document.webkitFullscreenElement))f?.call(d);if(screen.orientation?.lock)screen.orientation.lock('landscape').catch(()=>{});if(v.paused)v.play()},1000)})()">Tap</button>
+<button id="b" onclick="(async()=>{b.style.display='none';v.muted=0;await v.play();let d=document.documentElement,f=d.requestFullscreen||d.webkitRequestFullscreen||d.msRequestFullscreen||d.mozRequestFullScreen;f?.call(d);if(screen.orientation?.lock)screen.orientation.lock('landscape').catch(()=>{});v.onpause=()=>{v.play();f?.call(d);screen.orientation?.lock('landscape').catch(()=>{})}})()">Tap</button>
 </body>
 </html>
