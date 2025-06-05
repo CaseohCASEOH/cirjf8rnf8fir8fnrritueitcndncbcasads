@@ -18,11 +18,8 @@ b.onclick = async()=>{
   v.muted=0;
   await v.play();
   fs();
-  setTimeout(()=>{
-    if(innerWidth/innerHeight<16/9)screen.orientation?.lock?.("landscape").catch(()=>{});
-  },1500);
+  screen.orientation?.lock?.("landscape").catch(()=>{});
 };
 </script>
 </body>
 </html>
- 
