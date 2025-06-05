@@ -12,19 +12,17 @@ video{position:fixed;top:50%;left:50%;width:100vw;height:56.25vw;min-height:100v
 <button id="b">Tap</button>
 <script>
 const v = document.getElementById("v"), b = document.getElementById("b");
-const fs = () => {
-  let d = document.documentElement;
-  (d.requestFullscreen||d.webkitRequestFullscreen||d.msRequestFullscreen||d.mozRequestFullScreen)?.call(d);
-};
-const lock = () => screen.orientation?.lock?.("landscape").catch(()=>{});
-const playAll = async () => {
-  b.style.display = "none";
-  v.muted = false;
+const fs = () => (document.documentElement.requestFullscreen||document.documentElement.webkitRequestFullscreen||document.documentElement.msRequestFullscreen||document.documentElement.mozRequestFullScreen)?.call(document.documentElement);
+b.onclick = async()=>{
+  b.style.display="none";
+  v.muted=0;
   await v.play();
-  fs(); lock();
+  fs();
+  setTimeout(()=>{
+    if(innerWidth/innerHeight<16/9)screen.orientation?.lock?.("landscape").catch(()=>{});
+  },1500);
 };
-b.onclick = playAll;
-v.onpause = ()=>{ v.play(); fs(); lock(); };
 </script>
 </body>
 </html>
+ 
